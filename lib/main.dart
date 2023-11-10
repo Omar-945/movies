@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/ui/filmdetails/film_details.dart';
 import 'package:movies/ui/home_screen.dart';
+import 'package:movies/ui/tabs/browser/catagory/showCategory.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
       initialRoute: HomeScreen.route,
       routes: {
         HomeScreen.route: (context) => HomeScreen(),
-        FilmDetails.route: (context) => FilmDetails()
+        FilmDetails.route: (context) => FilmDetails(),
+        ShowCategory.route: (context) => ShowCategory()
       },
     );
   }

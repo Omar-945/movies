@@ -219,46 +219,4 @@ class FilmDetail {
         totalResults: totalResults ?? this.totalResults,
       );
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['adult'] = adult;
-    map['backdrop_path'] = backdropPath;
-    if (belongsToCollection != null) {
-      map['belongs_to_collection'] = belongsToCollection?.toJson();
-    }
-    map['budget'] = budget;
-    if (genres != null) {
-      map['genres'] = genres?.map((v) => v.toJson()).toList();
-    }
-    map['homepage'] = homepage;
-    map['id'] = id;
-    map['imdb_id'] = imdbId;
-    map['original_language'] = originalLanguage;
-    map['original_title'] = originalTitle;
-    map['overview'] = overview;
-    map['popularity'] = popularity;
-    map['poster_path'] = posterPath;
-    if (productionCompanies != null) {
-      map['production_companies'] =
-          productionCompanies?.map((v) => v.toJson()).toList();
-    }
-    if (productionCountries != null) {
-      map['production_countries'] =
-          productionCountries?.map((v) => v.toJson()).toList();
-    }
-    map['release_date'] = releaseDate;
-    map['revenue'] = revenue;
-    map['runtime'] = runtime;
-    if (spokenLanguages != null) {
-      map['spoken_languages'] =
-          spokenLanguages?.map((v) => v.toJson()).toList();
-    }
-    map['status'] = status;
-    map['tagline'] = tagline;
-    map['title'] = title;
-    map['video'] = video;
-    map['vote_average'] = voteAverage;
-    map['vote_count'] = voteCount;
-    return map;
-  }
 }

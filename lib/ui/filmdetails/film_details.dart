@@ -4,7 +4,7 @@ import 'package:movies/data/api_manger.dart';
 import 'package:movies/data/models/film_details/Film_details.dart';
 import 'package:movies/data/models/film_details/results.dart';
 import 'package:movies/ui/filmdetails/film_type_tag.dart';
-import 'package:movies/ui/tabs/home/film_poster_recomended.dart';
+import 'package:movies/ui/tabs/home/recommend/film_poster_recomended.dart';
 
 class FilmDetails extends StatelessWidget {
   static const String route = "FilmDetails";
@@ -37,12 +37,22 @@ class FilmDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-              flex: 2,
-              child: Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: CachedNetworkImageProvider(backGroundPath),
-                          fit: BoxFit.cover)))),
+            flex: 2,
+            child: CachedNetworkImage(
+                imageUrl: backGroundPath,
+                placeholder: (context, url) =>
+                    Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => Center(
+                      child: Text(
+                        "NO IMAGE",
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                      ),
+                    ),
+                imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: imageProvider, fit: BoxFit.cover)))),
+          ),
           SingleChildScrollView(
             child: Column(
               children: [
@@ -112,17 +122,32 @@ class FilmDetails extends StatelessWidget {
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      alignment: AlignmentDirectional.topStart,
-                                      width: 130,
-                                      height: 200,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: CachedNetworkImageProvider(
-                                                  posterPath),
-                                              fit: BoxFit.cover)),
-                                      child: Image.asset(
-                                          "assets/images/add_icon.png"),
+                                    CachedNetworkImage(
+                                      imageUrl: posterPath,
+                                      placeholder: (context, url) => Center(
+                                          child: CircularProgressIndicator()),
+                                      errorWidget: (context, url, error) =>
+                                          Center(
+                                        child: Text(
+                                          "NO IMAGE",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14),
+                                        ),
+                                      ),
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        width: 130,
+                                        height: 200,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: imageProvider,
+                                                fit: BoxFit.cover)),
+                                        child: Image.asset(
+                                            "assets/images/add_icon.png"),
+                                      ),
                                     ),
                                     SizedBox(
                                       width: 11,

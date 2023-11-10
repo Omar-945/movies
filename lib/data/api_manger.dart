@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:movies/data/models/film_catagory/film_category.dart';
 import 'package:movies/data/models/film_details/Film_details.dart';
 
 class ApiManger {
@@ -57,5 +58,34 @@ class ApiManger {
     var json = jsonDecode(response.body);
     FilmDetail similar = FilmDetail.fromJson(json);
     return similar;
+  }
+
+  static Future<FilmDetail> getSearchResults(String query) async {
+    Uri url = Uri.https(
+        host, "3/search/movie", {"language": "en_US", "query": query});
+    var response = await http.get(url, headers: headers);
+    var json = jsonDecode(response.body);
+    FilmDetail results = FilmDetail.fromJson(json);
+    return results;
+  }
+
+  static Future<FilmCategory> getCategory() async {
+    Uri url = Uri.https(host, "3/genre/movie/list", {"language": "en_US"});
+    var response = await http.get(url, headers: headers);
+    var json = jsonDecode(response.body);
+    FilmCategory results = FilmCategory.fromJson(json);
+    return results;
+  }
+
+  static Future<FilmDetail> getGenereFilm(int id) async {
+    Uri url = Uri.https(host, "3/discover/movie", {
+      "language": "en_US",
+      "sort_by": "popularity.desc",
+      "with_genres": id.toString(),
+      "page": "1",
+    });
+    var response = await http.get(url, headers: headers);
+    var json = jsonDecode(response.body);
+    return FilmDetail.fromJson(json);
   }
 }
