@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/data/api_manger.dart';
+import 'package:movies/data/api/api_manger.dart';
 import 'package:movies/data/models/film_catagory/film_category.dart';
 import 'package:movies/data/models/film_catagory/genres.dart';
 

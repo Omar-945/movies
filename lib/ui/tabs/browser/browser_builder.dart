@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/ui/tabs/browser/browser_view_model.dart';
 import 'package:movies/ui/tabs/browser/film_type.dart';
 
-class FilmCategoryBuilder extends StatefulWidget {
-  const FilmCategoryBuilder({super.key});
+class BrowderBuilder extends StatefulWidget {
+  const BrowderBuilder({super.key});
 
   @override
-  State<FilmCategoryBuilder> createState() => _FilmCategoryBuilderState();
+  State<BrowderBuilder> createState() => _BrowderBuilderState();
 }
 
-class _FilmCategoryBuilderState extends State<FilmCategoryBuilder> {
+class _BrowderBuilderState extends State<BrowderBuilder> {
   BrowserViewModel browserViewModel = BrowserViewModel();
 
   @override

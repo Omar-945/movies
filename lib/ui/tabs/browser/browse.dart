@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies/ui/tabs/browser/catagory/film_category_builder.dart';
+import 'package:movies/ui/tabs/browser/browser_builder.dart';
 
 class Browse extends StatelessWidget {
   const Browse({super.key});
@@ -20,7 +20,7 @@ class Browse extends StatelessWidget {
             SizedBox(
               height: 19,
             ),
-            Expanded(child: FilmCategoryBuilder()),
+            Expanded(child: BrowderBuilder()),
           ],
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/data/api_manger.dart';
+import 'package:movies/data/api/api_manger.dart';
 import 'package:movies/data/models/film_details/Film_details.dart';
 import 'package:movies/data/models/film_details/results.dart';
 import 'package:movies/ui/filmdetails/film_type_tag.dart';
