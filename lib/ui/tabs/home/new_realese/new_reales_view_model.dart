@@ -17,8 +17,12 @@ class NewRealeseViewModel extends Cubit<NewRealeseState> {
       FilmDetail newRelease = await repo.getRelease();
       emit(Success(newRelease.results ?? []));
     } catch (e) {
-      emit(Error(e.toString()));
+      emit(Error("some thing went wrong or no intrnet"));
     }
+  }
+
+  void addTolocal(Result film) async {
+    await repo.addToLocal(film);
   }
 }
 

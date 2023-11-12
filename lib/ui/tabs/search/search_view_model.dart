@@ -21,7 +21,7 @@ class SearchViewModel extends Cubit<SearchState> {
         emit(Success(results.results ?? []));
       }
     } catch (e) {
-      emit(Error(e.toString()));
+      emit(Error("sone thing went wrong or no intrnet"));
     }
   }
 }

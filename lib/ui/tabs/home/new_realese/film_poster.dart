@@ -1,11 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/data/models/film_details/results.dart';
+import 'package:movies/notifications/snack_message.dart';
 import 'package:movies/ui/filmdetails/film_details.dart';
 
-class FilmPoster extends StatelessWidget {
-  FilmPoster({super.key, required this.film});
+typedef callback = void Function();
 
+class FilmPoster extends StatelessWidget {
+  FilmPoster({super.key, required this.film, required this.add});
+
+  callback add;
   Result film;
 
   @override
@@ -34,7 +38,12 @@ class FilmPoster extends StatelessWidget {
                     image: DecorationImage(
                   image: provideImage,
                 )),
-                child: Image.asset("assets/images/add_icon.png"));
+                child: InkWell(
+                    onTap: () {
+                      add();
+                      showSnack("${film.title} added to watchList", context);
+                    },
+                    child: Image.asset("assets/images/add_icon.png")));
           },
         ));
   }

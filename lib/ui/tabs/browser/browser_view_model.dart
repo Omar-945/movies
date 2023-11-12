@@ -16,7 +16,7 @@ class BrowserViewModel extends Cubit<BrowserState> {
         emit(Success(response.genres ?? []));
       }
     } catch (e) {
-      Error(e.toString());
+      Error("some thing went wrong or no intrnet");
     }
   }
 }

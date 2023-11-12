@@ -1,14 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/data/models/film_details/results.dart';
+import 'package:movies/notifications/snack_message.dart';
 import 'package:movies/ui/filmdetails/film_details.dart';
+
+typedef callback = void Function();
 
 class FilmPosterRecomended extends StatelessWidget {
   Result film;
-
   bool isFirst;
+  callback add;
 
-  FilmPosterRecomended({super.key, required this.film, this.isFirst = true});
+  FilmPosterRecomended(
+      {super.key, required this.film, this.isFirst = true, required this.add});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +50,12 @@ class FilmPosterRecomended extends StatelessWidget {
                   image:
                       DecorationImage(image: imageProvider, fit: BoxFit.cover),
                 ),
-                child: Image.asset("assets/images/add_icon.png"),
+                child: InkWell(
+                    onTap: () async {
+                      add();
+                      showSnack("${film.title} added to watchList", context);
+                    },
+                    child: Image.asset("assets/images/add_icon.png")),
               ),
             ),
             const SizedBox(

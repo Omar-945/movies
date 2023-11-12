@@ -51,6 +51,9 @@ class _RecommendedBuilderState extends State<RecommendedBuilder> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) => FilmPosterRecomended(
                           film: state.films[index],
+                          add: () {
+                            recommendedViewModel.addTolocal(state.films[index]);
+                          },
                         ),
                     separatorBuilder: (context, index) => const SizedBox(
                           width: 20,

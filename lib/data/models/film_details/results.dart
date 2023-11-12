@@ -46,8 +46,10 @@ class Result {
     video = json['video'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
+    inLocal = json['inLocal'];
   }
 
+  bool? inLocal;
   bool? adult;
   String? backdropPath;
   List<num>? genreIds;
@@ -114,4 +116,12 @@ class Result {
     map['vote_count'] = voteCount;
     return map;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Result && runtimeType == other.runtimeType && id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

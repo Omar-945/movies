@@ -17,7 +17,7 @@ class PopularViewModel extends Cubit<PopularStates> {
       FilmDetail popular = await filmRepo.getPopular();
       emit(Success(popular.results ?? []));
     } catch (e) {
-      emit(Error(e.toString()));
+      emit(Error("some thing went wrong or no intrnet"));
     }
   }
 }

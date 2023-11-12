@@ -17,8 +17,12 @@ class RecommendedViewModel extends Cubit<RecommendedState> {
       FilmDetail recommended = await repo.getRecommended();
       emit(Success(recommended.results ?? []));
     } catch (e) {
-      emit(Error(e.toString()));
+      emit(Error("Some Thing went wrong or no Intrnet"));
     }
+  }
+
+  void addTolocal(Result film) async {
+    await repo.addToLocal(film);
   }
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/di/di.dart';
+import 'package:movies/notifications/snack_message.dart';
 import 'package:movies/ui/filmdetails/similar_films/similar_film_view_model.dart';
 import 'package:movies/ui/tabs/home/recommend/film_poster_recomended.dart';
 
@@ -54,8 +55,15 @@ class _SimilarFilmsBuilderState extends State<SimilarFilmsBuilder> {
                 return ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) => FilmPosterRecomended(
-                          film: state.films[index],
+                      film: state.films[index],
                           isFirst: false,
+                          add: () {
+                            similarFilmsViewModel
+                                .addTolocal(state.films[index]);
+                            showSnack(
+                                "${state.films[index].title} added to watch list",
+                                context);
+                          },
                         ),
                     separatorBuilder: (context, index) => const SizedBox(
                           width: 20,

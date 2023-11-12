@@ -66,7 +66,7 @@ class FilmDetails extends StatelessWidget {
                       SizedBox(
                         height: 8,
                       ),
-                      FilmDetailsBuilder(id: film.id ?? 0),
+                      FilmDetailsBuilder(id: film.id ?? 0, film: film),
                     ],
                   ),
                 ),

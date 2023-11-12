@@ -17,8 +17,12 @@ class SimilarFilmsViewModel extends Cubit<SimilarFilmsState> {
       FilmDetail similar = await repo.getSimilar(id);
       emit(Success(similar.results ?? []));
     } catch (e) {
-      emit(Error("Some thing went Wrong"));
+      emit(Error("Some thing went Wrong may be no Internet or something else"));
     }
+  }
+
+  void addTolocal(Result film) async {
+    await repo.addToLocal(film);
   }
 }
 
@@ -37,3 +41,4 @@ class Error extends SimilarFilmsState {
 }
 
 class Loading extends SimilarFilmsState {}
+

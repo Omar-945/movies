@@ -51,6 +51,9 @@ class _NewRealeseBuilderState extends State<NewRealeseBuilder> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => FilmPoster(
                     film: state.films[index],
+                    add: () {
+                      newRealeseViewModel.addTolocal(state.films[index]);
+                    },
                   ),
                   separatorBuilder: (context, index) => const SizedBox(
                     width: 20,
