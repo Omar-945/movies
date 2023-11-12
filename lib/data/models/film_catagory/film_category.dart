@@ -16,11 +16,11 @@ class FilmCategory {
   }
 
   List<Genres>? genres;
-  int? statusCode;
+  num? statusCode;
 
   FilmCategory copyWith({
     List<Genres>? genres,
-    int? statusCode,
+    num? statusCode,
   }) =>
       FilmCategory(
           genres: genres ?? this.genres,

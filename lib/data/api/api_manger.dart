@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:movies/data/models/film_catagory/film_category.dart';
 import 'package:movies/data/models/film_details/Film_details.dart';
 
+@singleton
 class ApiManger {
   static const String host = "api.themoviedb.org";
   static const Map<String, String> headers = {
@@ -12,7 +14,7 @@ class ApiManger {
     "accept": "application/json"
   };
 
-  static Future<FilmDetail> getPopular() async {
+  Future<FilmDetail> getPopular() async {
     var url = Uri.https(host, "3/movie/popular", {
       "language": "en-US",
       "page": "1",
@@ -24,7 +26,7 @@ class ApiManger {
     return popularResponse;
   }
 
-  static Future<FilmDetail> getRecent() async {
+  Future<FilmDetail> getRecent() async {
     var url = Uri.https(host, "/3/movie/upcoming", {
       "language": "en-US",
     });
@@ -35,7 +37,7 @@ class ApiManger {
     return releasesResponse;
   }
 
-  static Future<FilmDetail> getRecommended() async {
+  Future<FilmDetail> getRecommended() async {
     Uri url = Uri.https(host, "/3/movie/top_rated", {"language": "en_US"});
     var response = await http.get(url, headers: headers);
     var json = jsonDecode(response.body);
@@ -43,15 +45,20 @@ class ApiManger {
     return films;
   }
 
-  static Future<FilmDetail> getFilmDetails(int filmId) async {
+  Future<FilmDetail> getFilmDetails(num filmId) async {
     Uri url = Uri.https(host, "/3/movie/${filmId}", {"language": "en_US"});
-    var response = await http.get(url, headers: headers);
-    var json = jsonDecode(response.body);
-    FilmDetail filmDetail = FilmDetail.fromJson(json);
-    return filmDetail;
+    try {
+      var response = await http.get(url, headers: headers);
+      var json = jsonDecode(response.body);
+      FilmDetail filmDetail = FilmDetail.fromJson(json);
+      return filmDetail;
+    } catch (e) {
+      print(e.toString());
+    }
+    return FilmDetail();
   }
 
-  static Future<FilmDetail> getSimilarFilms(int filmId) async {
+  Future<FilmDetail> getSimilarFilms(num filmId) async {
     Uri url =
         Uri.https(host, "/3/movie/$filmId/similar", {"language": "en_US"});
     var response = await http.get(url, headers: headers);
@@ -60,7 +67,7 @@ class ApiManger {
     return similar;
   }
 
-  static Future<FilmDetail> getSearchResults(String query) async {
+  Future<FilmDetail> getSearchResults(String query) async {
     Uri url = Uri.https(
         host, "3/search/movie", {"language": "en_US", "query": query});
     var response = await http.get(url, headers: headers);
@@ -77,15 +84,21 @@ class ApiManger {
     return results;
   }
 
-  static Future<FilmDetail> getGenereFilm(int id) async {
+  Future<FilmDetail> getGenereFilm(num id) async {
     Uri url = Uri.https(host, "3/discover/movie", {
       "language": "en_US",
-      "sort_by": "popularity.desc",
       "with_genres": id.toString(),
-      "page": "1",
     });
-    var response = await http.get(url, headers: headers);
-    var json = jsonDecode(response.body);
-    return FilmDetail.fromJson(json);
+    try {
+      var response = await http.get(url, headers: headers);
+      var json = jsonDecode(response.body); //sucess //success
+      FilmDetail results = FilmDetail.fromJson(json); //fail??? //success
+      print(results); //fail???? //success?? HOW ?!?!?!
+      return results;
+    } catch (e) {
+      print(e.toString());
+    }
+    print("object");
+    return FilmDetail();
   }
 }

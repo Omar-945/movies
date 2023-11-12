@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/di/di.dart';
 import 'package:movies/ui/tabs/home/new_realese/film_poster.dart';
 import 'package:movies/ui/tabs/home/new_realese/new_reales_view_model.dart';
 
@@ -11,7 +12,7 @@ class NewRealeseBuilder extends StatefulWidget {
 }
 
 class _NewRealeseBuilderState extends State<NewRealeseBuilder> {
-  NewRealeseViewModel newRealeseViewModel = NewRealeseViewModel();
+  NewRealeseViewModel newRealeseViewModel = getIt.get<NewRealeseViewModel>();
 
   @override
   void initState() {
@@ -50,6 +51,9 @@ class _NewRealeseBuilderState extends State<NewRealeseBuilder> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => FilmPoster(
                     film: state.films[index],
+                    add: () {
+                      newRealeseViewModel.addTolocal(state.films[index]);
+                    },
                   ),
                   separatorBuilder: (context, index) => const SizedBox(
                     width: 20,

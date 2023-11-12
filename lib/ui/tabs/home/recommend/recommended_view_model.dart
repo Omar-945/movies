@@ -1,23 +1,28 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/data/api/api_manger.dart';
+import 'package:injectable/injectable.dart';
+import 'package:movies/data/data_source_repo_contract/recommended_repo.dart';
 import 'package:movies/data/models/film_details/Film_details.dart';
 import 'package:movies/data/models/film_details/results.dart';
 
+@injectable
 class RecommendedViewModel extends Cubit<RecommendedState> {
-  RecommendedViewModel() : super(Loading());
+  RecommendedRepo repo;
+
+  @factoryMethod
+  RecommendedViewModel(this.repo) : super(Loading());
 
   void getRecommended() async {
     emit(Loading());
     try {
-      FilmDetail response = await ApiManger.getRecommended();
-      if (response.statusCode != null) {
-        emit(Error("some thing went Wrong !"));
-      } else {
-        emit(Success(response.results ?? []));
-      }
+      FilmDetail recommended = await repo.getRecommended();
+      emit(Success(recommended.results ?? []));
     } catch (e) {
-      emit(Error(e.toString()));
+      emit(Error("Some Thing went wrong or no Intrnet"));
     }
+  }
+
+  void addTolocal(Result film) async {
+    await repo.addToLocal(film);
   }
 }
 

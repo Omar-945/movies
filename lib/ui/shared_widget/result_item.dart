@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:movies/data/models/film_details/results.dart';
 import 'package:movies/ui/filmdetails/film_details.dart';
 
-class ResultItem extends StatelessWidget {
+class Item extends StatelessWidget {
   Result film;
+  bool isStart;
 
-  ResultItem({super.key, required this.film});
+  Item({super.key, required this.film, this.isStart = true});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,8 @@ class ResultItem extends StatelessWidget {
         Navigator.pushNamed(context, FilmDetails.route, arguments: film);
       },
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+            isStart ? CrossAxisAlignment.start : CrossAxisAlignment.center,
         children: [
           CachedNetworkImage(
             imageUrl: posterPath,
@@ -36,11 +38,17 @@ class ResultItem extends StatelessWidget {
           ),
           Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: isStart
+                  ? CrossAxisAlignment.center
+                  : CrossAxisAlignment.start,
               children: [
                 Text(
                   film.title ?? "",
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                  maxLines: 1,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      overflow: TextOverflow.ellipsis),
                 ),
                 Text(
                   film.releaseDate ?? "",

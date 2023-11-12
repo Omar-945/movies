@@ -127,66 +127,66 @@ class FilmDetail {
   }
 
   bool? adult;
-  int? page;
-  int? totalPages;
-  int? totalResults;
+  num? page;
+  num? totalPages;
+  num? totalResults;
   List<Result>? results;
-  int? statusCode;
+  num? statusCode;
   String? backdropPath;
   BelongsToCollection? belongsToCollection;
-  int? budget;
+  num? budget;
   List<Genre>? genres;
   String? homepage;
-  int? id;
+  num? id;
   String? imdbId;
   String? originalLanguage;
   String? originalTitle;
   String? overview;
-  double? popularity;
+  num? popularity;
   String? posterPath;
   List<ProductionCompanies>? productionCompanies;
   List<ProductionCountries>? productionCountries;
   String? releaseDate;
-  int? revenue;
-  int? runtime;
+  num? revenue;
+  num? runtime;
   List<SpokenLanguages>? spokenLanguages;
   String? status;
   String? tagline;
   String? title;
   bool? video;
-  double? voteAverage;
-  int? voteCount;
+  num? voteAverage;
+  num? voteCount;
 
   FilmDetail copyWith(
           {bool? adult,
           String? backdropPath,
           BelongsToCollection? belongsToCollection,
-          int? budget,
+          num? budget,
           List<Genre>? genres,
           String? homepage,
-          int? id,
+          num? id,
           String? imdbId,
           String? originalLanguage,
           String? originalTitle,
           String? overview,
-          double? popularity,
+          num? popularity,
           String? posterPath,
           List<ProductionCompanies>? productionCompanies,
           List<ProductionCountries>? productionCountries,
           String? releaseDate,
-          int? revenue,
-          int? runtime,
+          num? revenue,
+          num? runtime,
           List<SpokenLanguages>? spokenLanguages,
           String? status,
           String? tagline,
           String? title,
           bool? video,
-          double? voteAverage,
-          int? voteCount,
-          int? page,
+          num? voteAverage,
+          num? voteCount,
+          num? page,
           List<Result>? results,
-          int? totalPages,
-          int? totalResults}) =>
+          num? totalPages,
+          num? totalResults}) =>
       FilmDetail(
         adult: adult ?? this.adult,
         backdropPath: backdropPath ?? this.backdropPath,

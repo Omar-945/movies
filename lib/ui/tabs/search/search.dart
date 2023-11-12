@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/ui/tabs/search/result_item.dart';
+import 'package:movies/di/di.dart';
+import 'package:movies/ui/shared_widget/result_item.dart';
 import 'package:movies/ui/tabs/search/search_view_model.dart';
 
 class Search extends StatelessWidget {
   Search({super.key});
 
-  SearchViewModel searchViewModel = SearchViewModel();
+  SearchViewModel searchViewModel = getIt.get<SearchViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +84,7 @@ class Search extends StatelessWidget {
                   case Success():
                     return Expanded(
                       child: ListView.separated(
-                          itemBuilder: (context, index) => ResultItem(
+                          itemBuilder: (context, index) => Item(
                                 film: state.films[index],
                               ),
                           separatorBuilder: (context, index) => Container(
