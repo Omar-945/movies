@@ -3,7 +3,10 @@ import 'package:movies/ui/filmdetails/film_details.dart';
 import 'package:movies/ui/home_screen.dart';
 import 'package:movies/ui/tabs/browser/catagory/showCategory.dart';
 
+import 'di/di.dart';
+
 void main() {
+  configureDependencies();
   runApp(const MyApp());
 }
 

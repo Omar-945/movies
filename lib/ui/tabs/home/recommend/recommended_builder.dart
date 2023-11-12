@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/di/di.dart';
 import 'package:movies/ui/tabs/home/recommend/film_poster_recomended.dart';
 import 'package:movies/ui/tabs/home/recommend/recommended_view_model.dart';
 
@@ -11,7 +12,7 @@ class RecommendedBuilder extends StatefulWidget {
 }
 
 class _RecommendedBuilderState extends State<RecommendedBuilder> {
-  RecommendedViewModel recommendedViewModel = RecommendedViewModel();
+  RecommendedViewModel recommendedViewModel = getIt.get<RecommendedViewModel>();
 
   @override
   void initState() {

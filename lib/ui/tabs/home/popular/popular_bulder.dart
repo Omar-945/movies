@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:movies/di/di.dart';
 import 'package:movies/ui/tabs/home/popular/popularWidget.dart';
 import 'package:movies/ui/tabs/home/popular/popular_view_model.dart';
 
@@ -12,7 +13,7 @@ class Popular extends StatefulWidget {
 }
 
 class _PopularState extends State<Popular> {
-  var popularViewModel = PopularViewModel();
+  var popularViewModel = getIt.get<PopularViewModel>();
 
   @override
   void initState() {

@@ -25,7 +25,7 @@ class ShowCategory extends StatelessWidget {
               SizedBox(
                 height: 19,
               ),
-              Expanded(child: CategoryBuilder(id: type.id ?? 0)),
+              Expanded(child: CategoryBuilder(id: type.id!.toDouble())),
             ],
           ),
         ),

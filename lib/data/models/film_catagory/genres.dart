@@ -12,11 +12,11 @@ class Genres {
     name = json['name'];
   }
 
-  int? id;
+  num? id;
   String? name;
 
   Genres copyWith({
-    int? id,
+    num? id,
     String? name,
   }) =>
       Genres(

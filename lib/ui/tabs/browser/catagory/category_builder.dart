@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/di/di.dart';
 import 'package:movies/ui/tabs/browser/catagory/category_view_model.dart';
 import 'package:movies/ui/tabs/browser/category_item.dart';
 
 class CategoryBuilder extends StatefulWidget {
-  int id;
+  double id;
 
   CategoryBuilder({super.key, required this.id});
 
@@ -13,7 +14,7 @@ class CategoryBuilder extends StatefulWidget {
 }
 
 class _CategoryBuilderState extends State<CategoryBuilder> {
-  CategoryViewModel categoryViewModel = CategoryViewModel();
+  CategoryViewModel categoryViewModel = getIt.get<CategoryViewModel>();
 
   @override
   void initState() {

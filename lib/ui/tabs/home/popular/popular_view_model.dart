@@ -1,20 +1,21 @@
 import 'package:bloc/bloc.dart';
-import 'package:movies/data/api/api_manger.dart';
+import 'package:injectable/injectable.dart';
+import 'package:movies/data/data_source_repo_contract/popular_film_repo.dart';
 import 'package:movies/data/models/film_details/Film_details.dart';
 import 'package:movies/data/models/film_details/results.dart';
 
+@injectable
 class PopularViewModel extends Cubit<PopularStates> {
-  PopularViewModel() : super(Loading());
+  PopularFilmRepo filmRepo;
+
+  @factoryMethod
+  PopularViewModel(this.filmRepo) : super(Loading());
 
   void getPopularFilms() async {
     emit(Loading());
     try {
-      FilmDetail response = await ApiManger.getPopular();
-      if (response.statusCode != null) {
-        emit(Error("Some Thing Went wrong"));
-      } else {
-        emit(Success(response.results ?? []));
-      }
+      FilmDetail popular = await filmRepo.getPopular();
+      emit(Success(popular.results ?? []));
     } catch (e) {
       emit(Error(e.toString()));
     }

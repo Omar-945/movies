@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:movies/data/models/film_details/results.dart';
 import 'package:movies/ui/filmdetails/film_details.dart';
 
-class ResultItem extends StatelessWidget {
+class Item extends StatelessWidget {
   Result film;
 
-  ResultItem({super.key, required this.film});
+  Item({super.key, required this.film});
 
   @override
   Widget build(BuildContext context) {

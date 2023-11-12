@@ -34,7 +34,7 @@ class Result {
   Result.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
-    genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];
+    genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<num>() : [];
     id = json['id'];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
@@ -50,34 +50,34 @@ class Result {
 
   bool? adult;
   String? backdropPath;
-  List<int>? genreIds;
-  int? id;
+  List<num>? genreIds;
+  num? id;
   String? originalLanguage;
   String? originalTitle;
   String? overview;
-  double? popularity;
+  num? popularity;
   String? posterPath;
   String? releaseDate;
   String? title;
   bool? video;
-  double? voteAverage;
-  int? voteCount;
+  num? voteAverage;
+  num? voteCount;
 
   Result copyWith({
     bool? adult,
     String? backdropPath,
-    List<int>? genreIds,
-    int? id,
+    List<num>? genreIds,
+    num? id,
     String? originalLanguage,
     String? originalTitle,
     String? overview,
-    double? popularity,
+    num? popularity,
     String? posterPath,
     String? releaseDate,
     String? title,
     bool? video,
-    double? voteAverage,
-    int? voteCount,
+    num? voteAverage,
+    num? voteCount,
   }) =>
       Result(
         adult: adult ?? this.adult,
