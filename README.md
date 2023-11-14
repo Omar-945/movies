@@ -1,16 +1,18 @@
-# movies
+# Movies app 
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features 
+- see popular films
+- new release films\
+- top rated
+- searching about any films
+- save your favourite films
+  ____________
+  ## conceptes applied 
+  - Bloc (state management)
+  - shared preference
+  - MVVC design patterns
+  - repository pattern
+  - dependency injection using injectable package
+  - apply dependency inversion principle
+  - git and git-flow release model
+  __________________________________
