@@ -34,7 +34,7 @@ class Result {
   Result.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
-    genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];
+    genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<num>() : [];
     id = json['id'];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
@@ -46,38 +46,40 @@ class Result {
     video = json['video'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
+    inLocal = json['inLocal'];
   }
 
+  bool? inLocal;
   bool? adult;
   String? backdropPath;
-  List<int>? genreIds;
-  int? id;
+  List<num>? genreIds;
+  num? id;
   String? originalLanguage;
   String? originalTitle;
   String? overview;
-  double? popularity;
+  num? popularity;
   String? posterPath;
   String? releaseDate;
   String? title;
   bool? video;
-  double? voteAverage;
-  int? voteCount;
+  num? voteAverage;
+  num? voteCount;
 
   Result copyWith({
     bool? adult,
     String? backdropPath,
-    List<int>? genreIds,
-    int? id,
+    List<num>? genreIds,
+    num? id,
     String? originalLanguage,
     String? originalTitle,
     String? overview,
-    double? popularity,
+    num? popularity,
     String? posterPath,
     String? releaseDate,
     String? title,
     bool? video,
-    double? voteAverage,
-    int? voteCount,
+    num? voteAverage,
+    num? voteCount,
   }) =>
       Result(
         adult: adult ?? this.adult,
@@ -114,4 +116,12 @@ class Result {
     map['vote_count'] = voteCount;
     return map;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Result && runtimeType == other.runtimeType && id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/data/models/film_details/results.dart';
-import '../../../data/api_manger.dart';
-import 'film_poster.dart';
-
-import 'film_poster_recomended.dart';
+import 'package:movies/ui/tabs/home/new_realese/new_realese_builder.dart';
+import 'package:movies/ui/tabs/home/recommend/recommended_builder.dart';
 
 class FilmsContainer extends StatelessWidget {
   String title;
@@ -38,74 +35,8 @@ class FilmsContainer extends StatelessWidget {
             height: 16,
           ),
           isRecommended
-              ? FutureBuilder(
-                  future: ApiManger.getRecommended(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return SafeArea(
-                          child: Padding(
-                        padding: EdgeInsets.all(20),
-                        child: Center(child: CircularProgressIndicator()),
-                      ));
-                    }
-                    if (snapshot.hasError || snapshot.data?.statusCode == 7) {
-                      return const SafeArea(
-                          child: Padding(
-                              padding: EdgeInsets.all(20),
-                              child: Center(
-                                  child: Text(
-                                "Some thing went wrong",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ))));
-                    }
-                    List<Result> films = snapshot.data!.results!;
-                    return Expanded(
-                      child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => FilmPosterRecomended(
-                                film: films[index],
-                              ),
-                          separatorBuilder: (context, index) => const SizedBox(
-                                width: 20,
-                              ),
-                          itemCount: 20),
-                    );
-                  })
-              : FutureBuilder(
-                  future: ApiManger.getRecent(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return SafeArea(
-                          child: Padding(
-                        padding: EdgeInsets.all(20),
-                        child: Center(child: CircularProgressIndicator()),
-                      ));
-                    }
-                    if (snapshot.hasError || snapshot.data?.statusCode == 7) {
-                      return const SafeArea(
-                          child: Padding(
-                              padding: EdgeInsets.all(20),
-                              child: Center(
-                                  child: Text(
-                                "Some thing went wrong",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ))));
-                    }
-                    List<Result> films = snapshot.data!.results!;
-                    return Expanded(
-                      child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => FilmPoster(
-                                film: films[index],
-                              ),
-                          separatorBuilder: (context, index) => const SizedBox(
-                                width: 20,
-                              ),
-                          itemCount: 20),
-                    );
-                  })
+              ? const Expanded(child: RecommendedBuilder())
+              : const Expanded(child: NewRealeseBuilder())
         ],
       ),
     );

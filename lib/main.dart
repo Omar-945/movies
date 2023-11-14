@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:movies/ui/filmdetails/film_details.dart';
 import 'package:movies/ui/home_screen.dart';
+import 'package:movies/ui/splash.dart';
+import 'package:movies/ui/tabs/browser/catagory/showCategory.dart';
+import 'package:movies/ui/tabs/watch_list_tab/watch_list_view_model.dart';
 
-void main() {
+import 'di/di.dart';
+
+void main() async {
+  configureDependencies();
+  WidgetsFlutterBinding.ensureInitialized();
+  await getIt.get<WatchListViewModel>().getWatchList();
   runApp(const MyApp());
 }
 
@@ -35,10 +43,12 @@ class MyApp extends StatelessWidget {
             onPrimary: Color(0xFFB5B4B4)),
         useMaterial3: true,
       ),
-      initialRoute: HomeScreen.route,
+      initialRoute: Splash.route,
       routes: {
         HomeScreen.route: (context) => HomeScreen(),
-        FilmDetails.route: (context) => FilmDetails()
+        FilmDetails.route: (context) => const FilmDetails(),
+        ShowCategory.route: (context) => const ShowCategory(),
+        Splash.route: (context) => const Splash()
       },
     );
   }
